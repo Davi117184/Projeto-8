@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Pessoal</title>
+    <style>
+        /* Estilos opcionais */
+    </style>
+</head>
+<body>
+    <h1>Blog Pessoal</h1>
+    <div id="blogPosts">
+        <!-- Os posts do blog serão carregados aqui -->
+    </div>
+    <h2>Add New Post</h2>
+    <input type="text" id="postTitle" placeholder="Title">
+    <textarea id="postContent" placeholder="Content"></textarea>
+    <button onclick="addPost()">Add Post</button>
+
+    <script>
+        var posts = [];
+
+        function addPost() {
+            var postTitle = document.getElementById("postTitle").value;
+            var postContent = document.getElementById("postContent").value;
+            var post = { title: postTitle, content: postContent };
+            posts.push(post);
+            displayPosts();
+            document.getElementById("postTitle").value = "";
+            document.getElementById("postContent").value = "";
+        }
+
+        function displayPosts() {
+            var blogPosts = document.getElementById("blogPosts");
+            blogPosts.innerHTML = "";
+            posts.forEach(function(post) {
+                var div = document.createElement("div");
+                var title = document.createElement("h3");
+                title.textContent = post.title;
+                var content = document.createElement("p");
+                content.textContent = post.content;
+                div.appendChild(title);
+                div.appendChild(content);
+                blogPosts.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
